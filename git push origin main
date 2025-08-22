@@ -1,0 +1,20 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	renamed:    01-fundamentals-part-1/starter/docs/01_javascript_setup_and-basics.md -> 01-fundamentals-part-1/docs/01_javascript_setup_and-basics.md
+#	renamed:    01-fundamentals-part-1/starter/docs/02_operators_and_expressions.md -> 01-fundamentals-part-1/docs/02_operators_and_expressions.md
+#	renamed:    01-fundamentals-part-1/starter/docs/03_strings_and_decisions.md -> 01-fundamentals-part-1/docs/03_strings_and_decisions.md
+#	renamed:    01-fundamentals-part-1/starter/docs/04_advanced_concepts_and_practice.md -> 01-fundamentals-part-1/docs/04_advanced_concepts_and_practice.md
+#	modified:   01-fundamentals-part-1/starter/index.html
+#	modified:   01-fundamentals-part-1/starter/script.js
+feat: add basic variables and data types
+
+- Set up JavaScript environment and browser console
+- Implement let, const, var variable declarations
+- Add data type exploration with typeof operator
+- Establish development workflow and best practices
