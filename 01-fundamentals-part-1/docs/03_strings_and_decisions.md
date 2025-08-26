@@ -345,7 +345,7 @@ Time to commit your intelligent BMI calculator!
 
 ```bash
 git add .
-git commit
+git add .
 ```
 
 **📝 Copy this commit message:**
