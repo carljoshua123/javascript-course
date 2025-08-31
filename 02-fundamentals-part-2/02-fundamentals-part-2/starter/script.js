@@ -246,15 +246,197 @@
 ////////////////////////////////////
 // Coding Challenge #2 - Student Grade Manager
 
+// const grades = [78, 85, 92, 67, 88, 95, 73, 82];
+
+// // Function to calculate average
+// function calculateAverage(grades) {
+//   let total = 0;
+//   for (let i = 0; i < grades.length; i++) {
+//     total += grades[i];
+//   }
+//   return total / grades.length;
+// }
+
+// // Function to find highest grade
+// function findHighestGrade(grades) {
+//   let highest = grades[0];
+//   for (let i = 1; i < grades.length; i++) {
+//     if (grades[i] > highest) {
+//       highest = grades[i];
+//     }
+//   }
+//   return highest;
+// }
+
+// // Function to find lowest grade
+// function findLowestGrade(grades) {
+//   let lowest = grades[0];
+//   for (let i = 1; i < grades.length; i++) {
+//     if (grades[i] < lowest) {
+//       lowest = grades[i];
+//     }
+//   }
+//   return lowest;
+// }
+
+// // Function to count passing students
+// function countPassing(grades, passingGrade) {
+//   let count = 0;
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] >= passingGrade) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// // Generate complete report
+// const average = calculateAverage(grades);
+// const highest = findHighestGrade(grades);
+// const lowest = findLowestGrade(grades);
+// const passing = countPassing(grades, 70);
+
+// console.log("=== GRADE REPORT ===");
+// console.log(`Average: ${average.toFixed(2)}`);
+// console.log(`Highest: ${highest}`);
+// console.log(`Lowest: ${lowest}`);
+// console.log(`Passing students: ${passing} out of ${grades.length}`);
+
+////////////////////////////////////
+// Arrays - Creation and Access
+console.log("=== ARRAYS ===");
+
+// Array creation
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+// Different data types in same array
+const mixed = ["Jonas", 27, true, friends];
+console.log(mixed);
+
+// Alternative way (but literal notation is preferred)
+const years = new Array(1991, 1984, 2008, 2020);
+console.log(years);
+
+//array indexing start at 0
+console.log(friends[0]);
+console.log(friends[1]);
+console.log(friends[2]);
+
+//array length property
+console.log(friends.length);
+
+//Get last element
+console.log(friends.length);
+
+//Changing array element
+friends[1] = "Jay";
+console.log(friends);
+
+// Arrays can contain expressions and function calls
+const firstName = "Jonas";
+const jonas = [firstName, "Schmedtmann", 2037 - 1991];
+console.log(jonas);
+
+// Using our calcAge function from Hour 1
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+
+const ages = [calcAge(1991), calcAge(1967), calcAge(2002)];
+console.log(ages);
+
+
+//Exercise 1: Personal Arrays
+// 1. Create an array 'hobbies' with 3 of your hobbies
+const hobbies = ["Coding", "Basketball", "Gaming"];
+
+// 2. Create an array 'numbers' with 5 different numbers
+const numbers = [10, 25, 47, 89, 100];
+
+// 3. Log the first and last element of each array
+console.log("First hobby:", hobbies[0]);
+console.log("Last hobby:", hobbies[hobbies.length - 1]);
+console.log("First number:", numbers[0]);
+console.log("Last number:", numbers[numbers.length - 1]);
+
+// 4. Change the second element in hobbies array
+hobbies[1] = "Reading";
+console.log("Updated hobbies:", hobbies);
+
+// 5. Create an array that includes your name, age, and a boolean
+const aboutMe = ["Carl", 20, true];
+console.log("About me:", aboutMe);
+
+
+//Exercise 2: Fruit Basket
+//Practice array methods
+let fruits = ["Apple", "Banana"];
+
+// 2. Add "Orange" to the end of the array
+fruits.push("Orange");
+
+// 3. Add "Grape" to the beginning 
+fruits.unshift("Grape");
+console.log("After unshift:", fruits);
+
+
+// 4. Remove the last element
+fruits.pop();
+console.log("After pop:", fruits);
+
+// 5. Check if 'banana' is in the array
+const hasBanana = fruits.includes("banana");
+console.log("includes('banana'):", hasBanana);
+
+// 6. Find the index of 'grape'
+const grapeIndex = fruits.indexOf("grape");
+console.log("indexOf('grape'):", grapeIndex);
+
+// 7. Log the final array
+console.log("Final array:", fruits);
+
+////////////////////////////////////
+// Array Iteration - Loops
+
+const friend = ["Michael", "Steven", "Peter"];
+
+// Traditional for loop
+for (let i = 0; i < friend.length; i++) {
+  console.log(friend[i]);
+}
+
+// For loop with processing
+const year = [1991, 2007, 1969, 2020];
+const age = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages)
+
+// forEach method - modern approach
+friends.forEach(function (friend, index) {
+  console.log(`${index}: ${friend}`);
+});
+
+// Arrow function version (even cleaner)
+friends.forEach((friend, index) => {
+  console.log(`Friend ${index + 1}: ${friend}`);
+});
+
+////////////////////////////////////
+// Coding Challenge #2 - Student Grade Manager
+
 const grades = [78, 85, 92, 67, 88, 95, 73, 82];
 
 // Function to calculate average
 function calculateAverage(grades) {
-  let total = 0;
+  let sum = 0;
   for (let i = 0; i < grades.length; i++) {
-    total += grades[i];
+    sum += grades[i];
   }
-  return total / grades.length;
+  return sum / grades.length;
 }
 
 // Function to find highest grade
