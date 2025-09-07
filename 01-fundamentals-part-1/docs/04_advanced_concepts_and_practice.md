@@ -127,7 +127,7 @@ const age = "18";
 if (age === 18) console.log("You just became an adult :D (strict)");
 if (age == 18) console.log("You just became an adult :D (loose)");
 
-// Let's see what happens:
+// Let's see what happens:  
 console.log("18" === 18); // false - different types
 console.log("18" == 18); // true - coercion happens
 console.log(18 === 18); // true - same type and value
