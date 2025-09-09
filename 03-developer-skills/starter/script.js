@@ -219,229 +219,389 @@
 // const array3 = [-10, "error", 20];
 // console.log("Amplitude (3 arrays):", calcTempAmplitudeUniversal(array1, array2, array3));
 
-function demonstrateArrayMax(numbers) {
-  // Method 1 - Using Math.max with spread operator (from research)
-  const method1 = Math.max(...numbers);
+// function demonstrateArrayMax(numbers) {
+//   // Method 1 - Using Math.max with spread operator (from research)
+//   const method1 = Math.max(...numbers);
 
-  // Method 2 - Using for loop (traditional approach)
-  let method2 = numbers[0];
-  for (let i = 1; i < numbers.length; i++) {
-    if (numbers[i] > method2) method2 = numbers[i];
+//   // Method 2 - Using for loop (traditional approach)
+//   let method2 = numbers[0];
+//   for (let i = 1; i < numbers.length; i++) {
+//     if (numbers[i] > method2) method2 = numbers[i];
+//   }
+
+//   // Method 3 - Using reduce method (functional approach)
+//   const method3 = numbers.reduce((max, current) =>
+//     current > max ? current : max
+//   );
+
+//   return { method1, method2, method3 };
+// }
+
+// // Test our research with sample data
+// const testNumbers = [3, 7, 2, 9, 1, 5];
+// const maxResults = demonstrateArrayMax(testNumbers);
+// console.log("Multiple approaches from research:", maxResults);
+
+// function reverseStringMethods(str) {
+//   // Method 1 - Most common Stack Overflow solution
+//   const method1 = str.split("").reverse().join("");
+
+//   // Method 2 - Manual loop approach (educational)
+//   let method2 = "";
+//   for (let i = str.length - 1; i >= 0; i--) {
+//     method2 += str[i];
+//   }
+
+//   // Method 3 - Modern spread operator approach
+//   const method3 = [...str].reverse().join("");
+
+//   return { method1, method2, method3 };
+// }
+
+// // Test our Stack Overflow research results
+// const reverseResults = reverseStringMethods("hello");
+// console.log("Stack Overflow research results:", reverseResults);
+
+// function demonstrateConcat() {
+//   const array1 = [1, 2, 3];
+//   const array2 = [4, 5, 6];
+//   const array3 = [7, 8, 9];
+
+//   const simple = array1.concat(array2);
+//   const multiple = array1.concat(array2, array3);
+
+//   // Verify concat doesn't modify original arrays
+//   console.log("Original array1 unchanged:", array1);
+
+//   return { simple, multiple };
+// }
+
+// const concatResults = demonstrateConcat();
+// console.log("MDN documentation applied:", concatResults);
+
+
+
+// function calculateAverageScore(scores) {
+//   let total = 0;
+
+//   for (let i = 0; i < scores.length; i++) {
+//     total += scores[i];
+//   }
+
+//   return total / scores.length;
+// }
+
+// // Test the fixed function
+// const testScores = [85, 92, 78, 96, 88];
+// const correctResult = calculateAverageScore(testScores);
+// console.log("Correct result:", correctResult); 
+
+
+// function demonstrateConsoleDebugging(data) {
+//   console.group("Debugging Session");
+
+//   console.log("Input data:", data);
+
+//   // Handle null separately
+//   if (data === null) {
+//     console.error("Error: Data is null!");
+//     console.groupEnd();
+//     return 0;
+//   }
+
+//   if (typeof data !== "object") {
+//     console.warn("Warning: Expected object/array, got", typeof data);
+//   }
+
+//   // Display as table if object/array
+//   if (Array.isArray(data) || typeof data === "object") {
+//     console.table(data);
+//   }
+
+//   console.groupEnd();
+
+//   // Return something useful
+//   if (Array.isArray(data)) {
+//     return data.length;
+//   } else if (typeof data === "object") {
+//     return Object.keys(data).length;
+//   } else {
+//     return 0; // non-object values
+//   }
+// }
+
+// // Test console debugging with different data types
+// const arrayData = [1, 2, 3, 4, 5];
+// const objectData = { name: "John", age: 30, city: "New York" };
+// const stringData = "Hello";
+// const numberData = 42;
+// const nullData = null;
+
+// console.log("Array:", demonstrateConsoleDebugging(arrayData));    // 5
+// console.log("Object:", demonstrateConsoleDebugging(objectData));  // 3
+// console.log("String:", demonstrateConsoleDebugging(stringData));  // 0
+// console.log("Number:", demonstrateConsoleDebugging(numberData));  // 0
+// console.log("Null:", demonstrateConsoleDebugging(nullData));      // 0
+
+
+// function stepThroughDebugging(numbers) {
+//   debugger; // Pause execution if DevTools is open
+
+//   console.log("Input array:", numbers);
+
+//   const result = numbers.reduce(
+//     (acc, current, index) => {
+//       console.log(`Processing index ${index}: value = ${current}`);
+
+//       if (Number.isFinite(current)) {
+//         acc.sum += current;
+//         acc.count++;
+//       } else {
+//         console.error(`Invalid number at index ${index}:`, current);
+//       }
+
+//       return acc;
+//     },
+//     { sum: 0, count: 0 } // initial accumulator
+//   );
+
+//   const average = result.count > 0 ? result.sum / result.count : 0;
+
+//   console.log("Final results:", {
+//     sum: result.sum,
+//     count: result.count,
+//     average,
+//   });
+
+//   return average;
+// }
+
+// // ✅ Test debugging function
+// const mixedNumbers = [10, 20, "error", 30, null, 40];
+// const debugResult = stepThroughDebugging(mixedNumbers);
+// console.log("Debug session result:", debugResult);
+
+
+
+// function calculateAverageScoreFixed(scores) {
+//   // STEP 5 - PREVENT: Add input validation
+//   if (!Array.isArray(scores)) {
+//     console.error("Invalid input: scores must be an array");
+//     return 0;
+//   }
+
+//   if (scores.length === 0) {
+//     console.warn("Empty array provided");
+//     return 0;
+//   }
+
+//   let total = 0;
+//   let validCount = 0;
+
+//   for (let i = 0; i < scores.length; i++) {
+//     const v = scores[i];
+//     // Accept only finite numbers
+//     if (Number.isFinite(v)) {
+//       total += v;
+//       validCount++;
+//     } else {
+//       console.warn(`Skipping non-number at index ${i}:`, v);
+//     }
+//   }
+
+//   if (validCount === 0) {
+//     console.warn("No valid numeric values found.");
+//     return 0;
+//   }
+
+//   return total / validCount;
+// }
+
+// // Comprehensive debugging verification
+// console.group("Debugging Verification Tests");
+
+// // Test 1 - Normal case
+// const normalScores = [85, 92, 78, 96, 88];
+// const normalResult = calculateAverageScoreFixed(normalScores);
+// console.log("Normal case result:", normalResult); // 87.8
+
+// // Test 2 - Edge case with invalid data
+// const mixedScores = [85, "invalid", 92, null, 78];
+// const mixedResult = calculateAverageScoreFixed(mixedScores);
+// console.log("Mixed data result:", mixedResult); // 85
+
+// // Test 3 - Error case with invalid input
+// const errorResult = calculateAverageScoreFixed("not an array");
+// console.log("Error case result:", errorResult); // 0
+
+// // Test 4 - Edge case with empty array
+// const emptyResult = calculateAverageScoreFixed([]);
+// console.log("Empty array result:", emptyResult); // 0
+
+// console.groupEnd();
+
+// console.log("Systematic debugging process successfully applied!");
+// console.log(
+//   "All bugs identified, isolated, investigated, fixed, and prevented"
+// );
+
+console.log("Ready to tackle complex problems using systematic approaches");
+console.log("Challenge: Build solutions that work under pressure")
+
+////////////////////////////////////
+// MAIN CHALLENGE: Weather Forecast String Builder (polished)
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+function printForecast(arr) {
+  if (!Array.isArray(arr) || arr.length === 0) {
+    console.log("...");
+    return;
   }
 
-  // Method 3 - Using reduce method (functional approach)
-  const method3 = numbers.reduce((max, current) =>
-    current > max ? current : max
-  );
+  const body = arr
+    .map((temp, i) => `${temp}°C in ${i + 1} day${i === 0 ? "" : "s"}`)
+    .join(" ... ");
 
-  return { method1, method2, method3 };
+  console.log(`... ${body} ...`);
 }
 
-// Test our research with sample data
-const testNumbers = [3, 7, 2, 9, 1, 5];
-const maxResults = demonstrateArrayMax(testNumbers);
-console.log("Multiple approaches from research:", maxResults);
+// Tests
+printForecast(data1); 
+printForecast(data2); 
+console.log("Weather forecast formatter working correctly!");
 
-function reverseStringMethods(str) {
-  // Method 1 - Most common Stack Overflow solution
-  const method1 = str.split("").reverse().join("");
 
-  // Method 2 - Manual loop approach (educational)
-  let method2 = "";
-  for (let i = str.length - 1; i >= 0; i--) {
-    method2 += str[i];
+////////////////////////////////////
+// Time Tracking App - Weekly Analyzer
+
+function analyzeWorkWeek(dailyHours) {
+  if (!Array.isArray(dailyHours) || dailyHours.length !== 7) {
+    throw new Error("Input must be an array of 7 numbers (hours per day).");
   }
 
-  // Method 3 - Modern spread operator approach
-  const method3 = [...str].reverse().join("");
+  const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  return { method1, method2, method3 };
+  // 1. Total hours
+  const totalHours = dailyHours.reduce((sum, h) => sum + h, 0);
+
+  // 2. Average daily hours (based on 7 days)
+  const avgDailyHours = totalHours / 7;
+
+  // 3. Day with most hours
+  const maxHours = Math.max(...dailyHours);
+  const maxDayIndex = dailyHours.indexOf(maxHours);
+  const mostHoursDay = weekDays[maxDayIndex];
+
+  // 4. Days worked (non-zero)
+  const daysWorked = dailyHours.filter(h => h > 0).length;
+
+  // 5. Full-time check
+  const isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    avgDailyHours,
+    mostHoursDay,
+    daysWorked,
+    isFullTime,
+  };
 }
 
-// Test our Stack Overflow research results
-const reverseResults = reverseStringMethods("hello");
-console.log("Stack Overflow research results:", reverseResults);
+// Test the solution
+const weeklyHours = [7.5, 8, 6.5, 0, 8.5, 4, 0];
+const analysis = analyzeWorkWeek(weeklyHours);
+console.log("Work week analysis:", analysis);
 
-function demonstrateConcat() {
-  const array1 = [1, 2, 3];
-  const array2 = [4, 5, 6];
-  const array3 = [7, 8, 9];
+console.log("Challenge completed under time pressure!");
 
-  const simple = array1.concat(array2);
-  const multiple = array1.concat(array2, array3);
+// Optimized version with error handling
+function analyzeWorkWeekOptimized(dailyHours) {
+  if (!Array.isArray(dailyHours) || dailyHours.length !== 7) {
+    console.error("Invalid input: Expected array of 7 daily hours");
+    return null;
+  }
 
-  // Verify concat doesn't modify original arrays
-  console.log("Original array1 unchanged:", array1);
+  const totalHours = dailyHours.reduce((sum, hours) => sum + hours, 0);
+  const averageHours = Math.round((totalHours / 7) * 10) / 10;
+  const maxHours = Math.max(...dailyHours);
+  const maxDayIndex = dailyHours.indexOf(maxHours);
+  const daysWorked = dailyHours.filter((hours) => hours > 0).length;
 
-  return { simple, multiple };
+  const dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  return {
+    totalHours,
+    averageHours,
+    maxDay: dayNames[maxDayIndex],
+    daysWorked,
+    isFullTime: totalHours >= 35,
+    workingDays: dailyHours
+      .map((hours, index) => (hours > 0 ? dayNames[index] : null))
+      .filter((day) => day !== null),
+  };
 }
 
-const concatResults = demonstrateConcat();
-console.log("MDN documentation applied:", concatResults);
+const optimizedAnalysis = analyzeWorkWeekOptimized(weeklyHours);
+console.log("Optimized analysis:", optimizedAnalysis);
 
 
-
-function calculateAverageScore(scores) {
-  let total = 0;
-
-  for (let i = 0; i < scores.length; i++) {
-    total += scores[i];
+function legacyForecastFunction(temperatures) {
+  // Multiple bugs hidden in this code!
+  var result = "";
+  for (var i = 1; i <= temperatures.length; i++) {
+    result = result + temperatures[i] + " degrees in day " + i + ", ";
   }
-
-  return total / scores.length;
+  return result;
 }
 
-// Test the fixed function
-const testScores = [85, 92, 78, 96, 88];
-const correctResult = calculateAverageScore(testScores);
-console.log("Correct result:", correctResult); 
+// Test the buggy function to see what goes wrong
+const testData = [15, 18, 22, 19];
+console.log("Buggy function output:", legacyForecastFunction(testData));
 
-
-function demonstrateConsoleDebugging(data) {
-  console.group("Debugging Session");
-
-  console.log("Input data:", data);
-
-  // Handle null separately
-  if (data === null) {
-    console.error("Error: Data is null!");
-    console.groupEnd();
-    return 0;
+//fixed debugging and enhanced
+// Completely fixed and enhanced version
+function enhancedForecastFunction(temperatures, options = {}) {
+  // Step 5 - PREVENT: Add comprehensive input validation
+  if (!Array.isArray(temperatures) || temperatures.length === 0) {
+    console.error("Invalid input: temperatures must be a non-empty array");
+    return "";
   }
 
-  if (typeof data !== "object") {
-    console.warn("Warning: Expected object/array, got", typeof data);
+  // Step 4 - FIX: Use modern JavaScript with proper declarations
+  const { unit = "°C", separator = "...", includeIndex = true } = options;
+
+  // Step 4 - FIX: Correct loop bounds and string building
+  let result = "";
+
+  for (let i = 0; i < temperatures.length; i++) {
+    const dayNumber = includeIndex ? i + 1 : i;
+    result += `${temperatures[i]}${unit} in ${dayNumber} days${separator}`;
   }
 
-  // Display as table if object/array
-  if (Array.isArray(data) || typeof data === "object") {
-    console.table(data);
-  }
-
-  console.groupEnd();
-
-  // Return something useful
-  if (Array.isArray(data)) {
-    return data.length;
-  } else if (typeof data === "object") {
-    return Object.keys(data).length;
-  } else {
-    return 0; // non-object values
-  }
+  // Step 5 - PREVENT: Return clean result without trailing separator
+  return separator + result.slice(0, -separator.length);
 }
 
-// Test console debugging with different data types
-const arrayData = [1, 2, 3, 4, 5];
-const objectData = { name: "John", age: 30, city: "New York" };
-const stringData = "Hello";
-const numberData = 42;
-const nullData = null;
-
-console.log("Array:", demonstrateConsoleDebugging(arrayData));    // 5
-console.log("Object:", demonstrateConsoleDebugging(objectData));  // 3
-console.log("String:", demonstrateConsoleDebugging(stringData));  // 0
-console.log("Number:", demonstrateConsoleDebugging(numberData));  // 0
-console.log("Null:", demonstrateConsoleDebugging(nullData));      // 0
-
-
-function stepThroughDebugging(numbers) {
-  debugger; // Pause execution if DevTools is open
-
-  console.log("Input array:", numbers);
-
-  const result = numbers.reduce(
-    (acc, current, index) => {
-      console.log(`Processing index ${index}: value = ${current}`);
-
-      if (Number.isFinite(current)) {
-        acc.sum += current;
-        acc.count++;
-      } else {
-        console.error(`Invalid number at index ${index}:`, current);
-      }
-
-      return acc;
-    },
-    { sum: 0, count: 0 } // initial accumulator
-  );
-
-  const average = result.count > 0 ? result.sum / result.count : 0;
-
-  console.log("Final results:", {
-    sum: result.sum,
-    count: result.count,
-    average,
-  });
-
-  return average;
-}
-
-// ✅ Test debugging function
-const mixedNumbers = [10, 20, "error", 30, null, 40];
-const debugResult = stepThroughDebugging(mixedNumbers);
-console.log("Debug session result:", debugResult);
-
-
-
-function calculateAverageScoreFixed(scores) {
-  // STEP 5 - PREVENT: Add input validation
-  if (!Array.isArray(scores)) {
-    console.error("Invalid input: scores must be an array");
-    return 0;
-  }
-
-  if (scores.length === 0) {
-    console.warn("Empty array provided");
-    return 0;
-  }
-
-  let total = 0;
-  let validCount = 0;
-
-  for (let i = 0; i < scores.length; i++) {
-    const v = scores[i];
-    // Accept only finite numbers
-    if (Number.isFinite(v)) {
-      total += v;
-      validCount++;
-    } else {
-      console.warn(`Skipping non-number at index ${i}:`, v);
-    }
-  }
-
-  if (validCount === 0) {
-    console.warn("No valid numeric values found.");
-    return 0;
-  }
-
-  return total / validCount;
-}
-
-// Comprehensive debugging verification
-console.group("Debugging Verification Tests");
-
-// Test 1 - Normal case
-const normalScores = [85, 92, 78, 96, 88];
-const normalResult = calculateAverageScoreFixed(normalScores);
-console.log("Normal case result:", normalResult); // 87.8
-
-// Test 2 - Edge case with invalid data
-const mixedScores = [85, "invalid", 92, null, 78];
-const mixedResult = calculateAverageScoreFixed(mixedScores);
-console.log("Mixed data result:", mixedResult); // 85
-
-// Test 3 - Error case with invalid input
-const errorResult = calculateAverageScoreFixed("not an array");
-console.log("Error case result:", errorResult); // 0
-
-// Test 4 - Edge case with empty array
-const emptyResult = calculateAverageScoreFixed([]);
-console.log("Empty array result:", emptyResult); // 0
-
-console.groupEnd();
-
-console.log("Systematic debugging process successfully applied!");
+// Test the enhanced function with multiple configurations
+console.log("Enhanced function (default):", enhancedForecastFunction(testData));
 console.log(
-  "All bugs identified, isolated, investigated, fixed, and prevented"
+  "Enhanced function (custom):",
+  enhancedForecastFunction(testData, {
+    unit: "°F",
+    separator: " | ",
+    includeIndex: true,
+  })
 );
 
+console.log("🎯 Complete developer skills successfully applied!");
+console.log("Legacy code debugged, fixed, and enhanced systematically");
