@@ -65,11 +65,22 @@ console.log('Check button clicked!');
 
 const guess = Number(document.querySelector('.guess').value);
 console.log(guess);
+ if (guess < 1 || guess > 20) {
+    document.querySelector('.message').textContent =
+      'Number must be between 1 and 20!';
+    return; // stop here
+  }
+if (!guess) {
+    document.querySelector('.message').textContent = 'No number!';
+    return; // stop here
+  }
 
 if (guess === secretNumber) {
     console.log('Correct guess');
     document.querySelector('.message').textContent = '🎉 Correct Number!'; 
     document.querySelector('.number').textContent = secretNumber;
+    document.body.style.backgroundColor = 'green';
+
 
     if (score > highscore){
         highscore = score;
@@ -77,6 +88,7 @@ if (guess === secretNumber) {
         document.querySelector('.message').textContent = '🎉You have won!!';
         document.querySelector('.guess').disabled = true;
         document.querySelector('.check').disabled = true;
+        document.body.style.backgroundColor = 'green';
     }
     } else if (guess > secretNumber) {
     console.log('Too high!');
@@ -90,12 +102,14 @@ if (guess === secretNumber) {
         document.querySelector('.guess').disabled = true;
         //disabled button click
         document.querySelector('.check').disabled = true;
+       
     }
   } else if (guess < secretNumber) {
     console.log('Too low!');
     document.querySelector('.message').textContent = '📉 Too low!';
     score--;
     document.querySelector('.score').textContent = score;
+     document.body.style.backgroundColor = 'red';
  }
 
 });
@@ -118,4 +132,8 @@ document.querySelector('.again').addEventListener('click', function () {
   // Re-enable input and button
   document.querySelector('.guess').disabled = false;
   document.querySelector('.check').disabled = false;
+  document.body.style.backgroundColor = '';
 });
+
+
+
