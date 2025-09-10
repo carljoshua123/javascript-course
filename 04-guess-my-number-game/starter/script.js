@@ -70,13 +70,52 @@ if (guess === secretNumber) {
     console.log('Correct guess');
     document.querySelector('.message').textContent = '🎉 Correct Number!'; 
     document.querySelector('.number').textContent = secretNumber;
+
+    if (score > highscore){
+        highscore = score;
+        document.querySelector('.highscore').textContent = highscore;
+        document.querySelector('.message').textContent = '🎉You have won!!';
+        document.querySelector('.guess').disabled = true;
+        document.querySelector('.check').disabled = true;
+    }
     } else if (guess > secretNumber) {
     console.log('Too high!');
     document.querySelector('.message').textContent = '📈 Too high!';
+    score--;
+    document.querySelector('.score').textContent = score;
+    if (score < 1){
+        document.querySelector('.message').textContent = '💥 You lost!';
+        document.querySelector('.number').textContent = secretNumber;
+        //disabled guess input type 
+        document.querySelector('.guess').disabled = true;
+        //disabled button click
+        document.querySelector('.check').disabled = true;
+    }
   } else if (guess < secretNumber) {
     console.log('Too low!');
     document.querySelector('.message').textContent = '📉 Too low!';
+    score--;
+    document.querySelector('.score').textContent = score;
  }
 
 });
 
+////////////////////////////////////
+// Game restart - reset everything for new game
+
+document.querySelector('.again').addEventListener('click', function () {
+  // Reset game state
+  score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  console.log('Your new secret number after restart', secretNumber);
+
+  // Reset display
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.guess').value = '';
+
+  // Re-enable input and button
+  document.querySelector('.guess').disabled = false;
+  document.querySelector('.check').disabled = false;
+});
